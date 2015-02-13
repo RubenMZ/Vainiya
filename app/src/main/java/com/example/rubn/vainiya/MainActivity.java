@@ -4,6 +4,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -23,6 +24,13 @@ public class MainActivity extends ActionBarActivity {
         email = (EditText) findViewById(R.id.editText3);
         pass = (EditText) findViewById(R.id.editText4);
         btAgregar = (Button) findViewById(R.id.btAgregar);
+
+        btAgregar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
     }
 
