@@ -1,60 +1,157 @@
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#00FFFF"
+    >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Crear Contacto"
-        android:layout_marginBottom="20dp"
-        android:textSize="30dp"
-        />
-
-    <EditText
+    <TabHost
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="Nombre"
-        android:ems="10"
-        android:id="@+id/editText"
-        android:layout_gravity="center_horizontal" />
+        android:id="@+id/tabHost"
+        android:layout_gravity="center_horizontal">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="phone"
-        android:ems="10"
-        android:hint="Telefono"
-        android:id="@+id/editText2" />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:hint="Email"
-        android:id="@+id/editText3" />
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"></TabWidget>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:hint="Contraseña"
-        android:id="@+id/editText4" />
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
 
-    <Button
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Agregar Contacto"
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/btAgregar"
-        />
+                <LinearLayout
+                    android:id="@+id/tab1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical">
 
-</LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Crear Contacto"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginTop="20dp"
+                        android:textSize="30dp"
+                        />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:hint="Nombre"
+                        android:ems="10"
+                        android:id="@+id/editText"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/radius"
+                        android:layout_marginBottom="20dp"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone"
+                        android:ems="10"
+                        android:hint="Telefono"
+                        android:id="@+id/editText2"
+                        android:background="@drawable/radius"
+                        android:layout_marginBottom="20dp"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        android:ems="10"
+                        android:hint="Email"
+                        android:id="@+id/editText3"
+                        android:background="@drawable/radius"
+                        android:layout_marginBottom="20dp"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:ems="10"
+                        android:hint="Contraseña"
+                        android:id="@+id/editText4"
+                        android:background="@drawable/radius"
+                        android:layout_marginBottom="20dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sexo"
+                        android:id="@+id/tvSexo"
+                        android:textSize="20dp"
+
+                        />
+
+                    <Switch
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btSexo"
+                        android:textOn="M"
+                        android:textOff="H"
+                        android:onClick="onToggleClicked"
+                        android:background="@drawable/radius"
+                        />
+
+                    <Button
+                        android:layout_marginTop="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Agregar Contacto"
+                        android:layout_gravity="center_horizontal"
+                        android:id="@+id/btAgregar"
+                        android:textColor="#000000"
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tab2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Lista Contactos"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginTop="20dp"
+                        android:textSize="30dp"
+                        />
+
+                    <ListView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/lvContactos"
+                        >
+
+
+
+
+                        </ListView>
+
+
+                    </LinearLayout>
+
+
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
+
+</RelativeLayout>
