@@ -5,9 +5,43 @@ package com.example.rubn.vainiya;
  */
 public class Contacto {
 
-    String nombre, tlf, email, contraseña;
+    String nombre;
+    String tlf;
+    String email;
+    String contraseña;
+    String sexo;
+
+    public Contacto(String nombre, String tlf, String email, String contraseña, String sexo) {
+        this.nombre = nombre;
+        this.tlf=tlf;
+        this.email = email;
+        this.contraseña = contraseña;
+        this.sexo = sexo;
+
+    }
+
+    public Contacto(String nombre, String tlf, String email, String sexo) {
+        this.nombre = nombre;
+        this.tlf=tlf;
+        this.email = email;
+        this.sexo = sexo;
+    }
+
+    public Contacto(String nombre, String tlf, String email) {
+        this.nombre = nombre;
+        this.tlf=tlf;
+        this.email = email;
+
+    }
 
 
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
     public String getTlf() {
         return tlf;
     }

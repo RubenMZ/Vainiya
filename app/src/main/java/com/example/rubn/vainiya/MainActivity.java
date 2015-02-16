@@ -6,11 +6,17 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Switch;
+import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -20,28 +26,78 @@ public class MainActivity extends ActionBarActivity {
     Switch btSexo;
     TextView tvSexo;
 
+    private ArrayAdapter<Contacto> adapter;
+    private ImageView imagen;
+    private ListView vistaContactos;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        inicializarComponentes();
+        inicializarListaContactos();
+        inicializarTabs();
+
+        btAgregar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                agregarContacto(nombre.getText().toString(), tlf.getText().toString(), email.getText().toString(), btSexo.isChecked());
+                Toast mensaje =  Toast.makeText(getApplicationContext(), "Contacto agregado", Toast.LENGTH_LONG);
+                mensaje.show();
+                limpiarCampos();
+            }
+        });
+
+
+    }
+
+    public void inicializarComponentes(){
         nombre = (EditText) findViewById(R.id.editText);
         tlf = (EditText) findViewById(R.id.editText2);
         email = (EditText) findViewById(R.id.editText3);
         pass = (EditText) findViewById(R.id.editText4);
 
         tvSexo = (TextView) findViewById(R.id.tvSexo);
-        btAgregar = (Button) findViewById(R.id.btAgregar);
         btSexo = (Switch) findViewById(R.id.btSexo);
 
-        btAgregar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast mensaje =  Toast.makeText(getApplicationContext(), "Contacto agregado", Toast.LENGTH_LONG);
-                mensaje.show();
-                limpiarCampos();
-            }
-        });
+        vistaContactos = (ListView) findViewById(R.id.lvContactos);
+        btAgregar = (Button) findViewById(R.id.btAgregar);
+    }
+
+
+    private void inicializarListaContactos(){
+        adapter = new ContactoListAdapter(this, new ArrayList<Contacto>());
+        vistaContactos.setAdapter(adapter);
+    }
+
+    private void agregarContacto(String nombre, String tlf, String email, boolean boton) {
+        Contacto c;
+
+        if(boton){
+            c = new Contacto(nombre, tlf, email, "Mujer");
+        }else{
+            c = new Contacto(nombre, tlf, email, "Hombre");
+        }
+
+        adapter.add(c);
+    }
+
+    private void inicializarTabs() {
+        TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
+        tabHost.setup();
+
+        TabHost.TabSpec spec = tabHost.newTabSpec("tab1");
+        spec.setContent(R.id.tab1);
+        spec.setIndicator("Crear");
+        tabHost.addTab(spec);
+
+        spec = tabHost.newTabSpec("tab2");
+        spec.setContent(R.id.tab2);
+        spec.setIndicator("Lista");
+        tabHost.addTab(spec);
 
     }
 
@@ -50,7 +106,6 @@ public class MainActivity extends ActionBarActivity {
         tlf.getText().clear();
         email.getText().clear();
         pass.getText().clear();
-        limpiarCampos();
     }
 
     public void onToggleClicked(View view) {
