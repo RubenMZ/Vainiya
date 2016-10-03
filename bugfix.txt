@@ -1,0 +1,2 @@
+Bugs a arreglar:
+  1) Vainilla se escribe con 'll'
